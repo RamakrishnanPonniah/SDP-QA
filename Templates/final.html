@@ -1,0 +1,327 @@
+﻿
+
+<div ng-controller="FinalController" class="final-content" style="height: 92%;">
+
+    <style type="text/css">
+        .modal-lg {
+            max-width: 1121px;
+        }
+
+        .nav-tabs > .nav-item > .nav-link.active {
+            border-bottom: 4px solid #28a745;
+        }
+
+        .nav-tabs > .nav-item > .nav-link {
+            border: none;
+            text-transform: uppercase;
+            font-size: 12px;
+            background-color: transparent;
+            color: inherit;
+            font-weight: 700;
+            border-bottom: 4px solid transparent;
+        }
+
+        .table-responsive {
+            font-size: 13px !important;
+        }
+
+        .custom-table {
+            float: left;
+            margin-right: 10px;
+            font-size: 0.75rem;
+        }
+    </style>
+
+    <h5 class="font-weight-bold">{{ Title }}</h5>
+    <hr />
+    <div class="row">
+        <div class="col-md-9 col-sm-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card font-weight-bold border-secondary">
+                        <div class="card-header bg-secondary text-white text-uppercase p-2 pl-4">To Back Office</div>
+                        <div class="card-body bg-light p-2 pl-4">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p>Dispute Alert&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</p>
+                                    <p>Dispute Category&nbsp;:</p>
+                                </div>
+                                <div class="col-7">
+                                    <p>
+                                        <span ng-class="{'text-danger' : office.disputeAlert != 'Yes' , 'text-success' : office.disputeAlert == 'Yes'}" class="text-uppercase text-success">
+                                            {{ office.disputeAlert }}
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span class="text-capitalize text-success">
+                                            {{ office.disputeCategory  }}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card font-weight-bold border-secondary">
+                        <div class="card-header bg-secondary text-white text-uppercase p-2 pl-4">To Customer</div>
+                        <div class="card-body bg-light p-2 pl-4">
+                            <div class="row">
+                                <div class="col-5">
+                                    <p>Dispute Alert &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</p>
+                                    <p>Alert Preference&nbsp;:</p>
+                                </div>
+                                <div class="col-7">
+                                    <p>
+                                        <span ng-class="{'text-danger' : customer.disputeAlert != 'Yes' , 'text-success' : customer.disputeAlert == 'Yes'}" class="text-uppercase">
+                                            {{ customer.disputeAlert }}
+                                        </span>
+                                    </p>
+                                    <p>
+                                        <span ng-class="{'text-danger' : customer.alertRef != 'Yes' , 'text-success' : customer.alertRef == 'Yes'}" class="text-uppercase text-success">
+                                            {{ customer.alertRef }}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <table cellpadding="4" cellspacing="4" style="width:100%">
+                <tr>
+                    <td colspan="2">
+                        <em class="p-1 pl-3 bg-light border rounded">Prediction Result Drivers from Historical Data <i class="fa fa-caret-down"></i></em>
+                        <i class="fa fa-thumbs-up"></i>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td colspan="2">
+                        <table cellpadding="4" cellspacing="4" style="width: 80%;">
+                            <tr>
+                                <td style="width: 15%;" class="font-weight-bold">Aggregate points scored by Transaction :</td>
+                                <td style="width: 3%;" class="font-weight-bold">
+                                    <span class="text-success">27</span>
+                                </td>
+                                <td style="width: 7%;" class="font-weight-bold">Dispute Probability :</td>
+                                <td style="width: 4%;" class="font-weight-bold">
+                                    <span class="text-success">{{ disputeProbability }}%</span>
+                                </td>
+                                <td style="width: 11%;" class="font-weight-bold">Threshold Probability for Alert :</td>
+                                <td style="width: 4%;" class="font-weight-bold">
+                                    <span class="text-success">50.00%</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>-->
+                <tr>
+                    <td colspan="2">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active"
+                                   data-toggle="tab"
+                                   href="javascript:void(0)"
+                                   data-target="#transactionFields">
+                                    Transaction Fields
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   data-toggle="tab"
+                                   href="javascript:void(0)"
+                                   data-target="#disputeFields">
+                                    Dispute Fields
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content bg-light">
+                            <div id="transactionFields" class="tab-pane col active" style="min-height: 142px">
+                                <br>
+                                <div class="float-left mr-3">
+                                    <p>Merchant Name = 3</p>
+                                    <p>Merchant Country = 5</p>
+                                </div>
+                                <div class="float-left mr-3">
+                                    <p>Authorized Amount = 3</p>
+                                    <p>Authorization Date = 2</p>
+                                </div>
+                                <br>
+                            </div>
+                            <div id="disputeFields" class="tab-pane col fade" style="min-height: 142px">
+                                <br>
+                                <div class="float-left mr-3">
+                                    <p>On Us = 5</p>
+                                    <p>Dispute Amount = 3</p>
+                                    <p>Fraud Reported = 2</p>
+                                </div>
+                                <div class="float-left mr-3">
+                                    <p>Decision Amount = 3</p>
+                                    <p>Chargeback Attempt = 3</p>
+                                    <p>Recovered = 4</p>
+                                </div>
+                                <div class="float-left mr-3">
+                                    <p>Representment Indicator = 4</p>
+                                    <p>Reconsidered Dispute = 3</p>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                        <div class="form-group">
+                            <button class="btn btn-sm btn-info text-capitalize" data-toggle="modal" data-target="#transactionMoadal">View Transaction Details</button>
+                            <button class="btn btn-sm btn-info text-capitalize" data-toggle="modal" data-target="#alertProcessingModal">Send for Alert Processing</button>
+                            <button class="btn btn-sm btn-info text-capitalize" data-toggle="modal" data-target="#declineTransactionModal">Decline/Hold Transaction</button>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="col-md-3 col-sm-12 text-center" style="font-size: 24px !important;">
+            <p class="font-weight-bold py-2 border-bottom">Dispute Probability</p>
+            <ng-gauge size="140" type="full" thick="18"
+                      min="0" max="100" value="disputeProbability"
+                      cap="butt" append="%"
+                      foreground-color="#28a745" background-color="#EEE">
+            </ng-gauge>
+            <br />
+            <p class="font-weight-bold py-2 border-bottom">Aggregate Points Scored</p>
+            <ng-gauge size="140" type="full" thick="18"
+                      min="0" max="100" value="27"
+                      cap="butt" append=""
+                      foreground-color="#28a745" background-color="#EEE">
+            </ng-gauge>
+
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="transactionMoadal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="card border-0">
+                    <div class="card-header border-0 font-weight-bold bg-secondary text-white">
+                        Transaction Details Evaluated
+                        <button type="button" class="close text-white font-weight-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="custom-table" cellspacing="4" cellpadding="4">
+                                    <tr><td colspan="2"><strong>Primary Information</strong></td></tr>
+                                    <tr><td>Card Number</td><td>{{transactionDetails.CardNumber}}</td></tr>
+                                    <tr><td>Posted Amount</td><td>{{transactionDetails.PostedAmount}}</td></tr>
+                                    <tr><td>Transaction Date</td><td>{{transactionDetails.TxnTimestamp}}</td></tr>
+                                    <tr><td>Transaction Type</td><td>{{transactionDetails.Txn_Type}}</td></tr>
+                                    <tr><td>Reference Number</td><td>{{transactionDetails.ReferenceNumber}}</td></tr>
+                                    <tr><td>Funding Account Number</td><td>{{transactionDetails.FundingAccountNumber}}</td></tr>
+                                    <tr><td>Customer Id</td><td>{{transactionDetails.CustomerID}}</td></tr>
+                                    <tr><td>Multi Clearing</td><td>{{ (transactionDetails.MultiClearing == 'Y') ? 'Yes' : 'No'}}</td></tr>
+                                </table>
+
+                                <table class="custom-table" cellspacing="4" cellpadding="4">
+                                    <tr><td colspan="2"><strong>Environment Information</strong></td></tr>
+                                    <tr><td>Network</td><td>{{transactionDetails.NetworkID}}</td></tr>
+                                    <tr><td>POS Entry Mode</td><td>{{transactionDetails.POSEntryMode}}</td></tr>
+                                    <tr><td>MOTO/ECI</td><td>{{transactionDetails.MOTO_ECI_Ind}}</td></tr>
+                                    <tr><td>Card Present</td><td>{{ (transactionDetails.PhysicalCardPresent == 'Y') ? 'Yes' : 'No' }}</td></tr>
+                                    <tr><td>Terminal Indicator</td><td>{{transactionDetails.TerminalIndicator}}</td></tr>
+                                    <tr><td>UCAF</td><td>{{transactionDetails.UCAF}}</td></tr>
+                                    <tr><td>Floor Limit</td><td>{{transactionDetails.FloorLimit}}</td></tr>
+                                    <tr><td>Service Code</td><td>{{transactionDetails.ServiceCode}}</td></tr>
+                                    <tr><td>Terminal Capability Code</td><td>{{transactionDetails.Terminalcapabilitycode}}</td></tr>
+                                    <tr><td>Cardholder ID Method</td><td>{{transactionDetails.CardholderIDMethod}}</td></tr>
+                                    <tr><td>POS Environment</td><td>{{transactionDetails.POSEnvironment}}</td></tr>
+                                    <tr><td>RPS Indicator</td><td>{{transactionDetails.RPSInd}}</td></tr>
+                                </table>
+
+                                <table class="custom-table" cellspacing="4" cellpadding="4">
+                                    <tr><td colspan="2"><strong>Merchant Information</strong></td></tr>
+                                    <tr><td>Merchant Name</td><td>{{transactionDetails.MerchantName}}</td></tr>
+                                    <tr><td>Merchant Country</td><td>{{transactionDetails.MerchantCountry}}</td></tr>
+                                    <tr><td>Merchant Category Code</td><td>{{transactionDetails.MerchantCategoryCode}}</td></tr>
+                                    <tr><td>Merchant Currency Code</td><td>{{transactionDetails.MerchantCurrencyCode}}</td></tr>
+                                    <tr><td>Acquirer BIN</td><td>{{transactionDetails.AcquirerBIN}}</td></tr>
+                                    <tr><td>Card Acceptor Id</td><td>{{transactionDetails.CardAcceptorID}}</td></tr>
+                                </table>
+
+                                <table class="custom-table" cellspacing="4" cellpadding="4">
+                                    <tr><td colspan="2"><strong>Authorization Information</strong></td></tr>
+                                    <tr><td>Pin Presence</td><td>{{ (transactionDetails.PinPresent == 'Y') ? 'Yes' : 'No' }}</td></tr>
+                                    <tr><td>CAVV Result</td><td>{{transactionDetails.CAVVResult}}</td></tr>
+                                    <tr><td>CVV2 Result</td><td>{{transactionDetails.CVV2Result}}</td></tr>
+                                    <tr><td>Authorized Amount</td><td>{{transactionDetails.AuthorizationAmount}}</td></tr>
+                                    <tr><td>Authorization Date</td><td>{{transactionDetails.AuthorizationTimestamp}}</td></tr>
+                                    <tr><td>POS Entry Mode on Auth</td><td>{{transactionDetails.POSEntryModeonAuth}}</td></tr>
+                                    <tr><td>Authorization Code</td><td>{{transactionDetails.Authorizationcode}}</td></tr>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="alertProcessingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content">
+                <div class="card border-0">
+                    <div class="card-header border-0 font-weight-bold bg-secondary text-white">
+                        Alert Processing Confirmation
+                        <button type="button" class="close text-white font-weight-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Alert sent for downstream processing.</p>
+                                <p>Click OK to continue with next transaction.</p>
+                                <a href="#/home" class="btn btn-sm btn-secondary" data-dismiss="modal" ng-click="redirectToHome()" style="min-width: 75px">OK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="declineTransactionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="card border-0">
+                    <div class="card-header border-0 font-weight-bold bg-secondary text-white">
+                        Alert Processing Confirmation
+                        <button type="button" class="close text-white font-weight-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Alert Deemed Valid. Decline/Hold response sent to Network.</p>
+                                <p>Click OK to continue with next transaction.</p>
+                                <a href="#/home" class="btn btn-sm btn-secondary" data-dismiss="modal" ng-click="redirectToHome()" style="min-width: 75px">OK</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

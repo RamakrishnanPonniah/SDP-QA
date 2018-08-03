@@ -1,0 +1,553 @@
+﻿
+
+<div ng-controller="TransactionController as transCtrl" style="padding-bottom: 100px;">
+    <div class="row">
+        <h5 class="font-weight-bold col-md-10">{{ Title }}</h5>
+        <div class="col-md-2">
+            <select id="Preset" ng-model="transCtrl.perset" class="form-control form-control-sm" ng-change="transCtrl.presetFunction()">
+                <option value="Preset 1-YY">Preset 1-YY</option>
+                <option value="Preset 2-YN">Preset 2-YN</option>
+                <option value="Preset 3-NN">Preset 3-NN</option>
+            </select>
+        </div>
+    </div>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-10 col-sm-12">
+            <div id="accordion" >
+                <div class="card border-secondary">
+                    <div class="card-header bg-secondary text-white text-uppercase font-weight-bold p-2">
+                        <a class="collapsed card-link text-white" data-toggle="collapse" aria-expanded="true" data-target="#collapseOne" href="javascript:void(0)">
+                            <i class="fa fa-caret-right p-1"></i>
+                            Primary
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" data-parent="#accordion">
+                        <div class="card-body bg-light">
+                            <div class="form-row">
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Card Number</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.CardNumber" class="form-control form-control-sm col-md-10">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Posted Amount</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.PostedAmount" class="form-control form-control-sm col-md-10">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Transaction Date</label>
+
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" class="form-control form-control-sm col-md-10" ng-model="transCtrl.transactionDetails.TxnTimestamp">
+                                        <div class="input-group-addon btn btn-light">
+                                            <i class="fa fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Transaction Type</label>
+                                    <select id="transType" ng-model="transCtrl.transactionDetails.Txn_Type" class="form-control form-control-sm col-md-10">
+                                        <option value="ATM Withdrawal">ATM Withdrawal</option>
+                                        <option value="POS Purchase">POS Purchase</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold"> Reference Number</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.ReferenceNumber" class="form-control form-control-sm col-md-10">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Funding Account Number</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.FundingAccountNumber" class="form-control form-control-sm col-md-10">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Customer Id</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.CustomerID" class="form-control form-control-sm col-md-10">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Multi Clearing</label>
+
+                                    <select ng-model="transCtrl.transactionDetails.MultiClearing" class="form-control form-control-sm col-md-10">
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="card border-secondary">
+                    <div class="card-header bg-secondary text-white text-uppercase font-weight-bold p-2">
+                        <a class="collapsed card-link text-white" data-toggle="collapse" data-target="#collapseTwo" href="javascript:void(0)">
+                            <i class="fa fa-caret-right p-1"></i>
+                            Authorization
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body bg-light">
+                            <div class="form-row">
+
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Pin Presence</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.PinPresent" class="form-control form-control-sm col-md-10">
+                                            <option value="Y">Yes</option>
+                                            <option value="N">No</option>
+                                            <option value="Space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">CAVV Result</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.CAVVResult" class="form-control form-control-sm col-md-10">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="7A">7A</option>
+                                            <option value="B">B</option>
+
+                                            <option value="Space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">CVV2 Result</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.CVV2Result" class="form-control form-control-sm col-md-10">
+                                            <option value="M">M</option>
+                                            <option value="N">N</option>
+                                            <option value="P">P</option>
+                                            <option value="S">S</option>
+                                            <option value="U">U</option>
+                                            <option value="Space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Authorized Amount</label>
+                                    <input type="text" size="10" ng-model="transCtrl.transactionDetails.AuthorizationAmount" class="form-control form-control-sm col-md-10" />
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Authorization Date</label>
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" class="form-control form-control-sm col-md-10" ng-model="transCtrl.transactionDetails.AuthorizationTimestamp">
+                                        <div class="input-group-addon btn btn-light">
+                                            <i class="fa fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">POS Entry Mode on Auth</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.POSEntryModeonAuth" class="form-control form-control-sm col-md-10">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="90">90</option>
+                                            <option value="91">91</option>
+                                            <option value="95">95</option>
+                                            <option value="96">96</option>
+                                            <option value="Space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Authorization Code</label>
+                                    <input type="text" size="10" ng-model="transCtrl.transactionDetails.Authorizationcode" class="form-control form-control-sm col-md-10">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="card border-secondary">
+                    <div class="card-header bg-secondary text-white text-uppercase font-weight-bold p-2">
+                        <a class="collapsed card-link text-white" data-toggle="collapse" data-target="#collapseThree" href="javascript:void(0)">
+                            <i class="fa fa-caret-right p-1"></i>
+                            Environment
+                        </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                        <div class="card-body bg-light">
+                            <div class="form-row">
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Network</label>
+                                    <div class="network">
+                                        <select id="networkDrop" ng-model="transCtrl.transactionDetails.NetworkID" class="form-control form-control-sm col-md-10">
+                                            <option value="BII">BII</option>
+                                            <option value="ILK">ILK</option>
+                                            <option value="MC">MC</option>
+                                            <option value="MD">MD</option>
+                                            <option value="MMS">MMS</option>
+                                            <option value="VSN">VSN</option>
+                                            <option value="VSP">VSP</option>
+                                            <option value="VSV">VSV</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">POS Entry Mode</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.POSEntryMode" class="form-control form-control-sm col-md-10">
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="90">90</option>
+                                            <option value="91">91</option>
+                                            <option value="95">95</option>
+                                            <option value="96">96</option>
+                                            <option value="Space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">MOTO/ECI</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.MOTO_ECI_Ind" class="form-control form-control-sm col-md-10">
+                                            <option value="01">01</option>
+                                            <option value="03">02</option>
+                                            <option value="04">03</option>
+                                            <option value="07">05</option>
+                                            <option value="08">06</option>
+                                            <option value="09">07</option>
+                                            <option value="09">08</option>
+                                            <option value="Space">
+                                                Space
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Card Present</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.PhysicalCardPresent" class="form-control form-control-sm col-md-10">
+                                            <option value="Y">Yes</option>
+                                            <option value="N">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Terminal Indicator</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.TerminalIndicator" class="form-control form-control-sm col-md-10">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="9">9</option>
+                                            <option value="space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group" ng-if="transCtrl.transactionDetails.CardNumber.charAt(0) == 5">
+                                    <label class="font-weight-bold">UCAF</label>
+                                    <div class="dropdown visahide">
+                                        <select ng-model="transCtrl.transactionDetails.UCAF" class="form-control form-control-sm col-md-10">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="Blank">-</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Floor Limit</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.FloorLimit" class="form-control form-control-sm col-md-10">
+                                            <option value="I">I</option>
+                                            <option value="C">C</option>
+
+                                            <option value="Space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Service Code</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.ServiceCode" class="form-control form-control-sm col-md-10">
+                                            <option value="101">101</option>
+                                            <option value="201">201</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Terminal Capability Code</label>
+                                    <div class="dropdown">
+                                        <select ng-model="transCtrl.transactionDetails.Terminalcapabilitycode" class="form-control form-control-sm col-md-10">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="Space">Space</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">Cardholder ID Method</label>
+                                    <select ng-model="transCtrl.transactionDetails.CardholderIDMethod" class="form-control form-control-sm col-md-10">
+                                        <option value="01">01</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="Space">Space</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">POS Environment</label>
+                                    <select ng-model="transCtrl.transactionDetails.POSEnvironment" class="form-control form-control-sm col-md-10">
+                                        <option value="C">C</option>
+                                        <option value="I">I</option>
+                                        <option value="R">R</option>
+                                        <option value="Space">Space</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="font-weight-bold">RPS Indicator</label>
+                                    <select ng-model="transCtrl.transactionDetails.RPSInd" class="form-control form-control-sm col-md-10">
+                                        <option value="1">1</option>
+                                        <option value="3">3</option>
+                                        <option value="8">8</option>
+                                        <option value="A">A</option>
+                                        <option value="P">P</option>
+                                        <option value="Space">Space</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="card border-secondary">
+                    <div class="card-header bg-secondary text-white text-uppercase font-weight-bold p-2">
+                        <a class="collapsed card-link text-white" data-toggle="collapse" data-target="#collapseFour" href="javascript:void(0)">
+                            <i class="fa fa-caret-right p-1"></i>
+                            Merchant
+                        </a>
+                    </div>
+                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                        <div class="card-body bg-light">
+                            <div class="form-row">
+                                <div class="col-md-4 form-group">
+                                    <label class="font-weight-bold">Merchant Name</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.MerchantName" class="form-control form-control-sm col-md-10">
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label class="font-weight-bold">Merchant Country</label>
+                                    <select id="transType" ng-model="transCtrl.transactionDetails.MerchantCountry" class="form-control form-control-sm col-md-10">
+                                        <option value="AM">AM</option>
+                                        <option value="AQ">AQ</option>
+                                        <option value="AU">AU</option>
+                                        <option value="BJ">BJ</option>
+                                        <option value="CI">CI</option>
+                                        <option value="FR">FR</option>
+                                        <option value="HK">HK</option>
+                                        <option value="IN">IN</option>
+                                        <option value="JO">JO</option>
+                                        <option value="KP">KP</option>
+                                        <option value="LR">LR</option>
+                                        <option value="MD">MD</option>
+                                        <option value="MK">MK</option>
+                                        <option value="MT">MT</option>
+                                        <option value="NZ">NZ</option>
+                                        <option value="PG">PG</option>
+                                        <option value="RU">RU</option>
+                                        <option value="SZ">SZ</option>
+                                        <option value="UM">UM</option>
+                                        <option value="US">US</option>
+                                        <option value="VI">VI</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label class="font-weight-bold">Merchant Category Code</label>
+                                    <select id="transType" ng-model="transCtrl.transactionDetails.MerchantCategoryCode" class="form-control form-control-sm col-md-10">
+                                        <option value="742">742</option>
+                                        <option value="763">763</option>
+                                        <option value="1711">1711</option>
+                                        <option value="1750">1750</option>
+                                        <option value="1799">1799</option>
+                                        <option value="2791">2791</option>
+                                        <option value="3000">3000</option>
+                                        <option value="3001">3001</option>
+                                        <option value="3002">3002</option>
+                                        <option value="3003">3003</option>
+                                        <option value="3006">3006</option>
+                                        <option value="3009">3009</option>
+                                        <option value="3012">3012</option>
+                                        <option value="3013">3013</option>
+                                        <option value="3014">3014</option>
+                                        <option value="3015">3015</option>
+                                        <option value="3016">3016</option>
+                                        <option value="3033">3033</option>
+                                        <option value="3300">3300</option>
+                                        <option value="3333">3333</option>
+                                        <option value="3501">3501</option>
+                                        <option value="3889">3889</option>
+                                        <option value="4000">4000</option>
+                                        <option value="4111">4111</option>
+                                        <option value="4119">4119</option>
+                                        <option value="4122">4122</option>
+                                        <option value="4215">4215</option>
+                                        <option value="4225">4225</option>
+                                        <option value="4457">4457</option>
+                                        <option value="4511">4511</option>
+                                        <option value="4722">4722</option>
+                                        <option value="4761">4761</option>
+                                        <option value="4789">4789</option>
+                                        <option value="4899">4899</option>
+                                        <option value="5013">5013</option>
+                                        <option value="5021">5021</option>
+                                        <option value="5044">5044</option>
+                                        <option value="5099">5099</option>
+                                        <option value="5122">5122</option>
+                                        <option value="5139">5139</option>
+                                        <option value="5172">5172</option>
+                                        <option value="5192">5192</option>
+                                        <option value="5193">5193</option>
+                                        <option value="5211">5211</option>
+                                        <option value="5251">5251</option>
+                                        <option value="5309">5309</option>
+                                        <option value="5310">5310</option>
+                                        <option value="5311">5311</option>
+                                        <option value="5331">5331</option>
+                                        <option value="5462">5462</option>
+                                        <option value="5533">5533</option>
+                                        <option value="5541">5541</option>
+                                        <option value="5698">5698</option>
+                                        <option value="5718">5718</option>
+                                        <option value="5719">5719</option>
+                                        <option value="5722">5722</option>
+                                        <option value="5812">5812</option>
+                                        <option value="5814">5814</option>
+                                        <option value="5815">5815</option>
+                                        <option value="5816">5816</option>
+                                        <option value="5817">5817</option>
+                                        <option value="5942">5942</option>
+                                        <option value="5943">5943</option>
+                                        <option value="5947">5947</option>
+                                        <option value="5949">5949</option>
+                                        <option value="5950">5950</option>
+                                        <option value="5966">5966</option>
+                                        <option value="5971">5971</option>
+                                        <option value="5976">5976</option>
+                                        <option value="5977">5977</option>
+                                        <option value="5983">5983</option>
+                                        <option value="5997">5997</option>
+                                        <option value="6010">6010</option>
+                                        <option value="6011">6011</option>
+                                        <option value="6012">6012</option>
+                                        <option value="6399">6399</option>
+                                        <option value="7011">7011</option>
+                                        <option value="7032">7032</option>
+                                        <option value="7214">7214</option>
+                                        <option value="7216">7216</option>
+                                        <option value="7217">7217</option>
+                                        <option value="7338">7338</option>
+                                        <option value="7339">7339</option>
+                                        <option value="7372">7372</option>
+                                        <option value="7512">7512</option>
+                                        <option value="7542">7542</option>
+                                        <option value="7631">7631</option>
+                                        <option value="7692">7692</option>
+                                        <option value="7699">7699</option>
+                                        <option value="7922">7922</option>
+                                        <option value="7992">7992</option>
+                                        <option value="7993">7993</option>
+                                        <option value="8011">8011</option>
+                                        <option value="8021">8021</option>
+                                        <option value="8099">8099</option>
+                                        <option value="8241">8241</option>
+                                        <option value="8351">8351</option>
+                                        <option value="8641">8641</option>
+                                        <option value="8651">8651</option>
+                                        <option value="8661">8661</option>
+                                        <option value="8911">8911</option>
+                                        <option value="9222">9222</option>
+                                        <option value="9311">9311</option>
+                                        <option value="9402">9402</option>
+                                        <option value="9701">9701</option>
+                                        <option value="9753">9753</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label class="font-weight-bold">Merchant Currency Code</label>
+                                    <select id="transType" ng-model="transCtrl.transactionDetails.MerchantCurrencyCode" class="form-control form-control-sm col-md-10">
+                                        <option value="10">10</option>
+                                        <option value="36">36</option>
+                                        <option value="51">51</option>
+                                        <option value="204">204</option>
+                                        <option value="250">250</option>
+                                        <option value="344">344</option>
+                                        <option value="356">356</option>
+                                        <option value="384">384</option>
+                                        <option value="400">400</option>
+                                        <option value="408">408</option>
+                                        <option value="430">430</option>
+                                        <option value="470">470</option>
+                                        <option value="498">498</option>
+                                        <option value="554">554</option>
+                                        <option value="581">581</option>
+                                        <option value="598">598</option>
+                                        <option value="643">643</option>
+                                        <option value="748">748</option>
+                                        <option value="807">807</option>
+                                        <option value="840">840</option>
+                                        <option value="850">850</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label class="font-weight-bold">Acquirer BIN</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.AcquirerBIN" class="form-control form-control-sm col-md-10">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label class="font-weight-bold">Card Acceptor Id</label>
+                                    <input type="text" ng-model="transCtrl.transactionDetails.CardAcceptorID" class="form-control form-control-sm col-md-10">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-10 col-sm-12 text-center">
+            <button type="button" ng-click="transCtrl.onSubmit()" class="btn btn-sm btn-success">
+                Submit
+            </button>
+            <button type="button" ng-click="transCtrl.reset()" class="btn btn-sm btn-secondary">
+                Reset All
+            </button>
+        </div>
+    </div>
+</div>

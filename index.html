@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html ng-app="app" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Smart Dispute Prediction Platform : {{ Title }}</title>
+    <base href="/#">
+    <!--<link rel='shortcut icon' type='image/x-icon' href='../STATIC/images/favicon.ico' />-->
+    <link rel="icon" type="image/png" href="../STATIC/images/ai.png" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="../STATIC/css/fontawesome-all.css" rel="stylesheet" />
+    <link href="../STATIC/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../STATIC/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="../STATIC/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <link href="../STATIC/css/styles.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="../STATIC/js/angular.min.js"></script>
+    <script type="text/javascript" src="../STATIC/js/angular-animate.min.js"></script>
+    <script type="text/javascript" src="../STATIC/js/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="../STATIC/js/angular-route.min.js"></script>
+    <script type="text/javascript" src="../STATIC/js/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="../STATIC/js/angularjs-gauge.js"></script>
+
+    <script src="../STATIC/js/jquery-3.3.1.min.js"></script>
+
+    <script src="../STATIC/js/app.js"></script>
+    <script src="../STATIC/js/controller/login.controller.js"></script>
+    <script src="../STATIC/js/controller/homepage.controller.js"></script>
+    <script src="../STATIC/js/controller/transaction.controller.js"></script>
+    <script src="../STATIC/js/controller/final.controller.js"></script>
+
+    <script src="../STATIC/js/popper.min.js"></script>
+    <script src="../STATIC/js/bootstrap.min.js"></script>
+    <script src="../STATIC/js/bootstrap-select.min.js"></script>
+    <script src="../STATIC/js/bootstrap-datepicker.min.js"></script>
+</head>
+<body ng-clock>
+    <!--spinner box-->
+    <div ng-if="loading" class="spinner-box">
+        <div class="spinner-content">
+            <i class="fa fa-recycle fa-spin text-secondary"></i>
+            <p>Evaluating New Transaction & Historical Data.</p>
+            <p>Dispute Prediction in Progress...</p>
+        </div>
+    </div>
+
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0 border-bottom">
+        <a class="navbar-brand" href="javascript:void(0)">
+            <img class="acc-logo" src="STATIC/images/acc-logo.png" />
+            <!--<span style=" line-height: 0; padding-left: 84px; font-size: 30px; font-weight: 700; color: red; "> &gt; </span>
+            <h2 class="m-0 mb-3" style=" line-height: 0.5; ">accenture</h2>-->
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <img class="sdp-logo" src="STATIC/images/sdp-logo.jpg" />
+                    <!--<img src="../STATIC/images/robo.png" style="height: 62px; position: absolute; left: 153px; top: 4px; padding: .5rem 1rem;" />
+                    <h2 class="nav-link font-weight-normal mb-0 pb-0 pt-3 ml-5 ml-0 ml-md-5">Smart Dispute Prediction Platform</h2>-->
+                </li>
+            </ul>
+            <form class="form-inline text-white" ng-show="!authenticated">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <img class="acc-new-tech" src="STATIC/images/acc-new-tech.png" />
+                    </li>
+                </ul>
+            </form>
+            <form class="form-inline text-white" ng-show="authenticated">
+                <a class="card bg-dark text-white text-center text-capitalize font-weight-light border-0 rounded-0 p-2 custom-menu" href="#/home">
+                    <span class="card-img"><i class="fa fa-home"></i></span>
+                    <span class="card-text">Home</span>
+                </a>
+                <a class="card bg-dark text-white text-center text-capitalize font-weight-light border-0 rounded-0 p-2 custom-menu" href="javascript:void(0)">
+                    <span class="card-img"><i class="fa fa-user"></i></span>
+                    <span class="card-text">{{ loginData.username }}</span>
+                </a>
+                <a class="card bg-dark text-white text-center text-capitalize font-weight-light border-0 rounded-0 p-2 custom-menu" href="#/login">
+                    <span class="card-img"><i class="fa fa-sign-out-alt"></i></span>
+                    <span class="card-text">Logout</span>
+                </a>
+
+            </form>
+        </div>
+    </nav>
+
+    <br />
+    <div class="clearfix"></div>
+    <div class="container-fluid">
+        <div ng-view class="mb-3"></div>
+        <br />
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="fixed-bottom bg-white border-top text-dark py-1">
+        <div class="col-md-10 float-left text-right" style="    padding-right: 21% !important;">
+            <a class="btn btn-link text-capitalize text-dark" href="javascript:void(0)">
+                Feedback
+            </a>
+            <a class="btn btn-link text-capitalize text-dark" href="javascript:void(0)">
+                Version History
+            </a>
+            <a class="btn btn-link text-capitalize text-dark" href="javascript:void(0)">
+                Contact us
+            </a>
+        </div>
+        <div class="col-md-2 float-right">
+            <select id="langSelect" class="form-control col-md-11 selectpicker ">
+                <option value="English_US" data-content="<img src=&quot;../STATIC/images/flag_usa.png&quot;> English (US)">English (US)</option>
+                <option value="French" data-content="<img src=&quot;../STATIC/images/flag_france.png&quot;> French">French</option>
+                <option value="Spanish" data-content="<img src=&quot;../STATIC/images/flag_spain.png&quot;> Spanish">Spanish</option>
+            </select>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+﻿body, html {
+    margin: 0;
+    height: 100%;
+    letter-spacing: 1px;
+}
+
+
+h1, h2, h3, h4, h5, h6, p, label, input, select, button, div, a, span {
+    letter-spacing: 1px !important;
+    font-family: sans-serif;
+}
+
+.border-secondary {
+    border: 1px solid rgba(0, 0, 0, 0.125) !important;
+}
+
+.table td, .table th {
+    border-top: 0px solid #dee2e6;
+}
+
+table.table-responsive {
+    display: inline-table;
+}
+
+.ng-empty.ng-invalid.ng-invalid-required.ng-touched {
+    border-color: #dc3545 !important;
+}
+
+.custom-menu:hover {
+    /*color: #000;*/
+    background-color: #dbd7d7;
+}
+
+.custom-menu {
+    min-width: 100px;
+}
+
+.spinner-box {
+    background-color: rgba(255, 255, 255, 0.91);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+.spinner-content { 
+    font-size: 45px;
+    left: 34%;
+    position: absolute;
+    top: 40%;
+    text-align: center;
+}
+
+.alert, p, label, input, div, a, .btn {
+    font-size: .875rem;
+}
+
+.close {
+    font-size: 1.3rem;
+    position: absolute;
+    top: 10px;
+    right: 14px;
+}
+
+.hide {
+    display: none;
+}
+
+/*.carousel-item img{
+    width: 100%;
+}*/
+
+.acc-logo {
+    width: 118px;
+    height: 46px;
+}
+
+.sdp-logo {
+    width: 450px;
+    height: 90px;
+}
+
+.acc-new-tech {
+    width: 114px;
+    height: 74px;
+}
