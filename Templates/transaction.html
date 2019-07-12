@@ -4,10 +4,10 @@
     <div class="row">
         <h5 class="font-weight-bold col-md-10">{{ Title }}</h5>
         <div class="col-md-2">
-            <select id="Preset" ng-model="transCtrl.perset" class="form-control form-control-sm" ng-change="transCtrl.presetFunction()">
-                <option value="Preset 1-YY">Preset 1-YY</option>
-                <option value="Preset 2-YN">Preset 2-YN</option>
-                <option value="Preset 3-NN">Preset 3-NN</option>
+            <select id="Preset" ng-model="transCtrl.perset" class="form-control form-control-sm" ng-init="transCtrl.perset=1;" ng-change="transCtrl.presetFunction()">
+                <option ng-value="1">Preset 1-YY</option>
+                <!--<option ng-value="2">Preset 2-YN</option>-->
+                <option ng-value="3">Preset 2-NN</option>
             </select>
         </div>
     </div>
@@ -15,7 +15,7 @@
     <hr />
     <div class="row">
         <div class="col-md-10 col-sm-12">
-            <div id="accordion" >
+            <div id="accordion">
                 <div class="card border-secondary">
                     <div class="card-header bg-secondary text-white text-uppercase font-weight-bold p-2">
                         <a class="collapsed card-link text-white" data-toggle="collapse" aria-expanded="true" data-target="#collapseOne" href="javascript:void(0)">

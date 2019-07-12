@@ -78,7 +78,7 @@
         init();
 
         function presetFunction() {
-            if (transCtrl.perset == 'Preset 1-YY') {
+            if (transCtrl.perset == 1) {
                 transCtrl.transactionDetails = {
                     CardNumber: "4AAABBBBCCCC8333",
                     FundingAccountNumber: "6AAABBC8333",
@@ -137,7 +137,7 @@
                     POC: ""
                 };
             }
-            if (transCtrl.perset == 'Preset 2-YN') {
+            if (transCtrl.perset == 2) {
                 transCtrl.transactionDetails = {
                     CardNumber: "4AAABBBBCCCC0109",
                     FundingAccountNumber: "6AAABBC0109",
@@ -196,7 +196,7 @@
                     POC: ""
                 };
             }
-            if (transCtrl.perset == 'Preset 3-NN') {
+            if (transCtrl.perset == 3) {
                 transCtrl.transactionDetails = {
                     CardNumber: "4AAABBBBCCCC8689",
                     FundingAccountNumber: "6AAABBC8689",
@@ -446,6 +446,7 @@
             }).then(function (response) {
                 if (response.data.d) {
                     $rootScope.transactionDetails = transCtrl.transactionDetails;
+                    $rootScope.perset = transCtrl.perset;
                     $rootScope.transactionResults = JSON.parse(response.data.d);
                     $location.path('final');
                 }

@@ -8,6 +8,10 @@
 
         $rootScope.Title = 'Dispute Alert Prediction Result';
 
+        $scope.allAlerts = false;
+        $scope.allMonitorsScore = false;
+        $scope.perset = $rootScope.perset;
+
         if (angular.isUndefined($rootScope.authenticated)) {
             window.location.href = "/";
         }
